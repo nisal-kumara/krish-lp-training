@@ -17,11 +17,11 @@ public class JumpingFrog{
 	userIn -= 5;
 	count++;
 	
-	if(userIn >= 3){
+	if(userIn >= 0){
 		userIn -= 3;
 		count++;
 		time += 1;
-	if(userIn >= 1){
+	if(userIn >= 0){
 		userIn -= 1;
 		count++;
 		time += 2;
