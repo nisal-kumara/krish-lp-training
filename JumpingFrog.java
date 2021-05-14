@@ -5,8 +5,19 @@ public class JumpingFrog{
 	public static void main(String[] args){
 
 	Scanner sc = new Scanner(System.in);
+	int userIn = 0;
+
+	while(userIn <= 0){
+
+	try{
 	System.out.print("Enter distance: ");
-	int userIn = sc.nextInt();
+	userIn = sc.nextInt();
+	if(userIn == 0) System.out.println("Value should be larger than 0");
+	} catch(Exception e){
+	sc.nextLine();
+	System.out.println("Enter a valid number");
+	}
+	}
 
 	int count = 0;
 	int time = 0;
