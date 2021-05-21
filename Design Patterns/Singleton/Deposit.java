@@ -8,7 +8,7 @@ public class Deposit{
 
 	//Creating 1st instance of the BranchDetails class, using "interestR" instance
 	BranchDetails bDetail = interestR.getBranchDetails();
-	System.out.println(bDetail + " " + bDetail.branchLocation);
+	System.out.println(bDetail);
 
 	//2nd instance of the InterestRate class
 	InterestRate interestR2 = InterestRate.getInterestRate();
@@ -16,6 +16,6 @@ public class Deposit{
 
 	//Creating 2nd instance of the BranchDetails class, using "interestR2" instance
 	BranchDetails bDetail2 = interestR2.getBranchDetails();
-	System.out.println(bDetail2 + " " + bDetail2.branchLocation);
+	System.out.println(bDetail2);
 }
 }
