@@ -9,7 +9,7 @@ public class HR extends LeaveHandler {
         if(leave.getNumberOfDays() <= 21){
             //Employee tier should be 3 or above & reason type should not be "Regular" to get approved
             if(leave.getEmpTier() <= 3 && !leave.getReason().equals(ReasonType.REGULAR)){
-                return "Your leave days has been APPROVED by Project Manager";
+                return "Your leave days has been APPROVED by HR";
             }else{
                 return "Your leave request has been DENIED by HR";
             }

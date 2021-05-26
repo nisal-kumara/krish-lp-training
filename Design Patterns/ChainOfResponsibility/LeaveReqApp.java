@@ -5,12 +5,12 @@ public class LeaveReqApp {
     public static void main(String[] args) {
 
         TeamLeader teamLeader = new TeamLeader();
-        ProjectManager projectManager = new ProjectManager();
+        ProjectLeader projectLeader = new ProjectLeader();
         HR hr = new HR();
         Manager manager = new Manager();
 
-        teamLeader.setSuperVisor(projectManager);
-        projectManager.setSuperVisor(hr);
+        teamLeader.setSuperVisor(projectLeader);
+        projectLeader.setSuperVisor(hr);
         hr.setSuperVisor(manager);
 
         Leave leave1 = new Leave(5,4, ReasonType.REGULAR);
