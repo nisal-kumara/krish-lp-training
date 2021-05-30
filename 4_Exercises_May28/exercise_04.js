@@ -1,6 +1,10 @@
 // Exercice 04: 
 // A program to find, if two given words are Anagram of not
+
 function checkAnagram(word1, word2) {
+
+    word1 = word1.toLowerCase();
+    word2 = word2.toLowerCase();
     //check if those 2 words are equal
     if (word1 === word2) return "These are Anagram";
     //check if length is equal and then use split(), sort(), & join() methods on both words
