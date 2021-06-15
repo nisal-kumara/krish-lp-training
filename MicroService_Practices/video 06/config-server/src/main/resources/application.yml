@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/nisal-kumara/spring-cloud-config-store
+          uri: https://github.com/nisal-kumara/krish-lp-training/tree/master/MicroService_Practices/externalized-config-server
           search-paths:
-            - '*service'
+            - 'service-config/*service'
 
