@@ -1,4 +1,6 @@
-spring:
-  cloud:
-    config:
-      uri: http://localhost:8191
+#not going to use bootstrap anymore, since removing config server
+
+#spring:
+#  cloud:
+#    config:
+#      uri: http://localhost:8191
