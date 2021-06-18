@@ -1,6 +1,5 @@
-server:
-  port: 8181
-
+#server:
+#  port: 8181
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/db_rentcloud_rent?createDatabaseIfNotExist=true
@@ -12,7 +11,6 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
-  application:
-    name: rent
+
 
 

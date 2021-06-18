@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: vehicle
+
+#note -> video 16 -> 15:12
+server:
+  port: 0
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}-${random.int}
+    hostname: localhost
