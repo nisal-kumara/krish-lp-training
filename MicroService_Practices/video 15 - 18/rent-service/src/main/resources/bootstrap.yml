@@ -3,8 +3,12 @@ spring:
     name: rent
 
 #note -> video 16 -> 15:12
+#server:
+#  port: 0
+
+#using this port to test with rest client
 server:
-  port: 0
+  port: 8191
 
 eureka:
   client:

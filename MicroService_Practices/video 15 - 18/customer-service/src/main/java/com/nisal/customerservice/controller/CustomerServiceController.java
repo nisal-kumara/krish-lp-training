@@ -25,6 +25,7 @@ public class CustomerServiceController {
     public Customer getCustomer(@PathVariable int id) {
 
         //watch from here to understand -> video 15 -> 25:40
+        //*watch again from here -> video 17 -> 14:00
         System.out.println("request came on "+ LocalDateTime.now() + "++++++");
         return customerService.findById(id);
     }
