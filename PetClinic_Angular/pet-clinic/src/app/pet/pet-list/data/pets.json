@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "petName": "Browny",
+        "petType": "Dog",
+        "breed": "German Shepherd",
+        "refrenceNo": 45698
+    },
+    {
+        "id": 2,
+        "petName": "Max",
+        "petType": "Dog",
+        "breed": "Retrievers (Labrador)",
+        "refrenceNo": 52689
+    },
+    {
+        "id": 3,
+        "petName": "Oscar",
+        "petType": "Cat",
+        "breed": "Persian",
+        "refrenceNo": 78524
+    },
+    {
+        "id": 4,
+        "petName": "Molly",
+        "petType": "Cat",
+        "breed": "Bengal",
+        "refrenceNo": 96541
+    },
+    {
+        "id": 5,
+        "petName": "Coco",
+        "petType": "Cat",
+        "breed": "Maine Coon",
+        "refrenceNo": 25368
+    },
+    {
+        "id": 6,
+        "petName": "Archie",
+        "petType": "Dog",
+        "breed": "Retrievers (Labrador)",
+        "refrenceNo": 45896
+    },
+    {
+        "id": 7,
+        "petName": "Teddy",
+        "petType": "Dog",
+        "breed": "Rottweilers",
+        "refrenceNo": 85231
+    },
+    {
+        "id": 8,
+        "petName": "Toby",
+        "petType": "Dog",
+        "breed": "German Shepherd",
+        "refrenceNo": 74569
+    }
+]

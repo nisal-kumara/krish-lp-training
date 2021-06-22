@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "firstName": "Nisal",
+        "lastName": "Pubudu",
+        "email": "nisal@gmail.com",
+        "mobile": 778585869,
+        "refrenceNo": 45698
+    },
+    {
+        "id": 2,
+        "firstName": "Kusal",
+        "lastName": "Sandun",
+        "email": "kusal@gmail.com",
+        "mobile": 794532148,
+        "refrenceNo": 15236
+    },
+    {
+        "id": 3,
+        "firstName": "Naruto",
+        "lastName": "Uzumaki",
+        "email": "naruto@gmail.com",
+        "mobile": 752136984,
+        "refrenceNo": 45326
+    },
+    {
+        "id": 4,
+        "firstName": "Sasuke",
+        "lastName": "Uchiha",
+        "email": "sasuke@gmail.com",
+        "mobile": 753214789,
+        "refrenceNo": 69854
+    },
+    {
+        "id": 5,
+        "firstName": "Petronille",
+        "lastName": "Belin",
+        "email": "belin@gmail.com",
+        "mobile": 713698547,
+        "refrenceNo": 55555
+    },
+    {
+        "id": 6,
+        "firstName": "Kakashi",
+        "lastName": "Hatake",
+        "email": "kakashigmail.com",
+        "mobile": 712569874,
+        "refrenceNo": 25987
+    }
+]

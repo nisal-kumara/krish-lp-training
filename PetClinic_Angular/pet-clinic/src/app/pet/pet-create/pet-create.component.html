@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Add New Pet Details</h5>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center" id="form-div">
+    <form class="col-md-4" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group m-4">
+            <label for="pNameInput">Pet Name:</label>
+            <input type="text" class="form-control" id="pNameInput" placeholder="Enter Pet Name" ngModel name="petName">
+        </div>
+        <div class="form-group m-4">
+            <label for="pTypeInput">Pet Type:</label>
+            <input type="text" class="form-control" id="pTypeInput" placeholder="Enter Pet Type" ngModel name="petType">
+        </div>
+        <div class="form-group m-4">
+            <label for="breedInput">Breed:</label>
+            <input type="text" class="form-control" id="breedInput" placeholder="Enter Breed" ngModel name="breed">
+        </div>
+        <div class="form-group m-4">
+            <label for="refInput">Reference No:</label>
+            <input type="number" class="form-control" id="refInput" placeholder="Enter Reference No." ngModel
+                name="refrenceNo">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>

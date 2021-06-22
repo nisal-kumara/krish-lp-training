@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Update Owner Details</h5>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center" id="form-div">
+    <form class="col-md-4" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group m-4">
+            <label for="fNameInput">First Name:</label>
+            <input type="text" class="form-control" id="fNameInput" placeholder="Enter First Name"
+                [ngModel]="owner.firstName" name="firstName">
+        </div>
+        <div class="form-group m-4">
+            <label for="fLastInput">Last Name:</label>
+            <input type="text" class="form-control" id="fLastInput" placeholder="Enter Last Name"
+                [ngModel]="owner.lastName" name="lastName">
+        </div>
+        <div class="form-group m-4">
+            <label for="emailInput">Email address:</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="Enter email" [ngModel]="owner.email"
+                name="email">
+        </div>
+        <div class="form-group m-4">
+            <label for="mobileInput">Mobile:</label>
+            <input type="number" class="form-control" id="mobileInput" placeholder="Enter Mobile No."
+                [ngModel]="owner.mobile" name="mobile">
+        </div>
+        <div class="form-group m-4">
+            <label for="refInput">Reference No:</label>
+            <input type="number" class="form-control" id="refInput" placeholder="Enter Reference No."
+                [ngModel]="owner.refrenceNo" name="refrenceNo">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
