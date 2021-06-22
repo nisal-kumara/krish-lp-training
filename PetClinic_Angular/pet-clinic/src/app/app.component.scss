@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700&display=swap');
 
   .navbar {
-    background: #3b5998;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
   }
   
   .nav-link,
@@ -20,7 +20,10 @@
   
   .nav-link:hover {
     background: #f4f4f4;
-    color: #070707;
+    color: #47597E;
   }
 
+  .router{
+    padding-top: 50px;
+  }
   
