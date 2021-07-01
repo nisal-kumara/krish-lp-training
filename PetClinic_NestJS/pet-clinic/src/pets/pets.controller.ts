@@ -1,5 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { PetBreedValidationPipe } from './pet-breed-validation.pipe';
 import { PetBreed, PetType } from './pet.model';
+import { PetCreateDto } from './PetCreate.dto';
 import { PetsService } from './pets.service';
 import { PetUpdateDto } from './PetUpdate.dto';
 
@@ -11,18 +13,18 @@ export class PetsController {
     }
 
     @Get()
+    @UsePipes(ValidationPipe)
     getAllPets() {
-
         return this.petsService.getAllPets();
     }
 
     @Post()
-    createPet(@Body('petName') petName: string,
-        @Body('petType') petType: PetType,
-        @Body('breed') breed: PetBreed,
-        @Body('refrenceNo') refrenceNo: number,) {
-
-        return this.petsService.createPets(petName, petType, breed, refrenceNo)
+    //note -> video 03 -> 10:35
+    @UsePipes(ValidationPipe)
+    //watch again -> video 03 -> 13:20
+    @UsePipes(new PetBreedValidationPipe())
+    createPet(@Body() petCreateDto: PetCreateDto) {
+        return this.petsService.createPets(petCreateDto)
     }
 
     @Get("/:id")

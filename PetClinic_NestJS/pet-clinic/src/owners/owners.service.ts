@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Owner } from './owner.model';
 import { v1 as uuid } from 'uuid'
 import { OwnerSearchDto } from './OwnerSearch.dto';
 import { OwnerUpdateDto } from './OwnerUpdate.dto';
+import { OwnerCreateDto } from './OwnerCreate.dto';
 
 @Injectable()
 export class OwnersService {
@@ -13,7 +14,9 @@ export class OwnersService {
         return this.owners;
     }
 
-    createOwner(firstName: string, lastName: string, email: string, mobile: number, refrenceNo: number) {
+    createOwner(ownerCreateDto: OwnerCreateDto) {
+        const { firstName, lastName, email, mobile, refrenceNo } = ownerCreateDto
+
         const owner = {
             id: uuid(),
             firstName,
@@ -41,7 +44,12 @@ export class OwnersService {
 
     getOwnerById(id: string): Owner {
         const owners = this.getAllOwners();
-        return owners.find(owner => owner.id === id);
+        let owner = owners.find(owner => owner.id === id);
+        //must watch -> video 03 -> 22:44
+        if (!owner) {
+            throw new NotFoundException(`${id} is Not Exist`)
+        }
+        return owner;
     }
 
     updateOwner(ownerUpdateDto: OwnerUpdateDto): Owner {

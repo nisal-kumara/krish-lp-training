@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { OwnerCreateDto } from './OwnerCreate.dto';
 import { OwnersService } from './owners.service';
 import { OwnerSearchDto } from './OwnerSearch.dto';
 import { OwnerUpdateDto } from './OwnerUpdate.dto';
@@ -21,14 +22,10 @@ export class OwnersController {
     }
 
     @Post()
-    createOwner(@Body('firstName') firstName: string,
-        @Body('lastName') lastName: string,
-        @Body('email') email: string,
-        @Body('mobile') mobile: number,
-        @Body('refrenceNo') refrenceNo: number,) {
-
-        return this.ownersService.createOwner(firstName, lastName, email, mobile, refrenceNo)
-
+    //note -> video 03 -> 10:35
+    @UsePipes(ValidationPipe)
+    createOwner(@Body() ownerCreateDto: OwnerCreateDto) {
+        return this.ownersService.createOwner(ownerCreateDto)
     }
 
     @Get("/:id")

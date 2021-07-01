@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Pet, PetBreed, PetType } from './pet.model';
 import { v1 as uuid } from 'uuid'
 import { PetSearchDto } from './petSearch.dto';
 import { PetUpdateDto } from './PetUpdate.dto';
+import { PetCreateDto } from './PetCreate.dto';
 
 @Injectable()
 export class PetsService {
@@ -13,7 +14,9 @@ export class PetsService {
         return this.pets;
     }
 
-    createPets(petName: string, petType: PetType, breed: PetBreed, refrenceNo: number) {
+    createPets(petCreateDto: PetCreateDto) {
+        const { petName, petType, breed, refrenceNo } = petCreateDto
+
         const pet = {
             id: uuid(),
             petName,
@@ -40,7 +43,12 @@ export class PetsService {
 
     getPetById(id: string): Pet {
         const pets = this.getAllPets();
-        return pets.find(pet => pet.id === id);
+        let pet = pets.find(pet => pet.id === id);
+        //must watch -> video 03 -> 22:44
+        if (!pet) {
+            throw new NotFoundException(`${id} is Not Exist`)
+        }
+        return pet;
     }
 
     updatePet(petUpdateDto: PetUpdateDto): Pet {
