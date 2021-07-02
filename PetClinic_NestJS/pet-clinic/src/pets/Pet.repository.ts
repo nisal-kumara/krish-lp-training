@@ -2,10 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Pet, PetDocument } from "src/schemas/Pet.schema";
-import { PetCreateDto } from "./PetCreate.dto";
+import { PetCreateDto } from "./Pet-DTOs/PetCreate.dto";
 import * as mongoose from 'mongoose'
-import { PetSearchDto } from "./petSearch.dto";
-import { PetUpdateDto } from "./PetUpdate.dto";
+import { PetSearchDto } from "./Pet-DTOs/petSearch.dto";
+import { PetUpdateDto } from "./Pet-DTOs/PetUpdate.dto";
 
 @Injectable()
 export class PetRepository {
@@ -29,7 +29,8 @@ export class PetRepository {
     async filterPets(filter: PetSearchDto) {
         let breed = Object.is(filter.breed, undefined) ? '' : filter.breed
         let type = Object.is(filter.type, undefined) ? '' : filter.type
-        return await this.petModel.find({ $and: [{ Petbreed: { $regex: breed } }, /*{ PetType: { $regex: type } }*/] })
+        //console.log(type);
+        return await this.petModel.find({ $and: [/*{ Petbreed: { $regex: breed } },*/ { PetType: type }] })
 
     }
 

@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { v1 as uuid } from 'uuid'
-import { PetSearchDto } from './petSearch.dto';
-import { PetUpdateDto } from './PetUpdate.dto';
-import { PetCreateDto } from './PetCreate.dto';
+import { PetSearchDto } from './Pet-DTOs/petSearch.dto';
+import { PetUpdateDto } from './Pet-DTOs/PetUpdate.dto';
+import { PetCreateDto } from './Pet-DTOs/PetCreate.dto';
 import { Pet } from 'src/schemas/Pet.schema';
 import { PetRepository } from './Pet.repository';
 
@@ -22,6 +22,7 @@ export class PetsService {
     }
 
     petSearch(petSearchDto: PetSearchDto) {
+        console.log(petSearchDto)
         return this.petRepository.filterPets(petSearchDto);
     }
 

@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator"
-import { PetBreed, PetType } from "./pet.enum"
+import { PetBreed, PetType } from "../pet.enum"
 
 export class PetCreateDto {
     id: string

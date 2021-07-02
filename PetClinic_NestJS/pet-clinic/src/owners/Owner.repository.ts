@@ -2,9 +2,9 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Owner, OwnerDocument } from "src/schemas/Owner.schema";
-import { OwnerCreateDto } from "./OwnerCreate.dto";
-import { OwnerSearchDto } from "./OwnerSearch.dto";
-import { OwnerUpdateDto } from "./OwnerUpdate.dto";
+import { OwnerCreateDto } from "./Owner-DTOs/OwnerCreate.dto";
+import { OwnerSearchDto } from "./Owner-DTOs/OwnerSearch.dto";
+import { OwnerUpdateDto } from "./Owner-DTOs/OwnerUpdate.dto";
 import * as mongoose from 'mongoose'
 
 @Injectable()

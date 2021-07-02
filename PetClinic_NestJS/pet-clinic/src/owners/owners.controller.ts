@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Owner } from 'src/schemas/Owner.schema';
-import { OwnerCreateDto } from './OwnerCreate.dto';
+import { OwnerCreateDto } from './Owner-DTOs/OwnerCreate.dto';
 import { OwnersService } from './owners.service';
-import { OwnerSearchDto } from './OwnerSearch.dto';
-import { OwnerUpdateDto } from './OwnerUpdate.dto';
+import { OwnerSearchDto } from './Owner-DTOs/OwnerSearch.dto';
+import { OwnerUpdateDto } from './Owner-DTOs/OwnerUpdate.dto';
 
 @Controller('owners')
 export class OwnersController {

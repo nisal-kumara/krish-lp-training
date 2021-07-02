@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Pet } from 'src/schemas/Pet.schema';
 import { PetBreedValidationPipe } from './pet-breed-validation.pipe';
-import { PetCreateDto } from './PetCreate.dto';
+import { PetCreateDto } from './Pet-DTOs/PetCreate.dto';
 import { PetsService } from './pets.service';
-import { PetSearchDto } from './petSearch.dto';
-import { PetUpdateDto } from './PetUpdate.dto';
+import { PetSearchDto } from './Pet-DTOs/petSearch.dto';
+import { PetUpdateDto } from './Pet-DTOs/PetUpdate.dto';
 
 @Controller('pets')
 export class PetsController {
@@ -17,6 +17,7 @@ export class PetsController {
     @UsePipes(ValidationPipe)
     async getAllPets(@Query() param: PetSearchDto): Promise<Pet[]> {
         if (Object.keys(param).length) {
+            //console.log(param)
             return this.petsService.petSearch(param);
         } else {
             return this.petsService.getAllPets();

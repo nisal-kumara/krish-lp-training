@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { v1 as uuid } from 'uuid'
-import { OwnerSearchDto } from './OwnerSearch.dto';
-import { OwnerUpdateDto } from './OwnerUpdate.dto';
-import { OwnerCreateDto } from './OwnerCreate.dto';
+import { OwnerSearchDto } from './Owner-DTOs/OwnerSearch.dto';
+import { OwnerUpdateDto } from './Owner-DTOs/OwnerUpdate.dto';
+import { OwnerCreateDto } from './Owner-DTOs/OwnerCreate.dto';
 import { Owner } from 'src/schemas/Owner.schema';
 import { OwnerRepository } from './Owner.repository';
 
