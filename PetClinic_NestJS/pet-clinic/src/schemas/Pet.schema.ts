@@ -1,6 +1,8 @@
 import { Prop, SchemaFactory, Schema } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 import { PetBreed, PetType } from "src/pets/pet.enum";
+import * as mongoose from 'mongoose'
+import { Owner } from "./Owner.schema";
 
 //plane mongodb -> video 04 -> 09:00
 // export const PetSchema = ({
@@ -11,7 +13,7 @@ import { PetBreed, PetType } from "src/pets/pet.enum";
 //     refrenceNo: Number
 // })
 
-export type PetDocument = Pet & Document;
+export type PetDocument = Pet & mongoose.Document;
 
 @Schema()
 export class Pet {
@@ -24,8 +26,8 @@ export class Pet {
     petType: PetType
     @Prop()
     breed: PetBreed
-    @Prop()
-    refrenceNo: number
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Owner' })
+    ownerId: Owner
 }
 
 export const PetSchema = SchemaFactory.createForClass(Pet);

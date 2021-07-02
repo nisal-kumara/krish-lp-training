@@ -1,4 +1,5 @@
 import { IsNotEmpty } from "class-validator"
+import { Owner } from "src/schemas/Owner.schema"
 import { PetBreed, PetType } from "../pet.enum"
 
 export class PetCreateDto {
@@ -8,5 +9,5 @@ export class PetCreateDto {
     breed: PetBreed
     //note -> video 03 -> 10:35
     @IsNotEmpty()
-    refrenceNo: number
+    ownerId: Owner
 }
