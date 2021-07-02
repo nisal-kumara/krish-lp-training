@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Owner } from 'src/schemas/Owner.schema';
 import { OwnerCreateDto } from './OwnerCreate.dto';
 import { OwnersService } from './owners.service';
 import { OwnerSearchDto } from './OwnerSearch.dto';
@@ -12,29 +13,30 @@ export class OwnersController {
     }
 
     @Get()
-    getAllOwners(@Query() param: OwnerSearchDto) {
-        //note -> video 02 -> 12:30
+    @UsePipes(ValidationPipe)
+    async getAllOwners(@Query() param: OwnerSearchDto): Promise<Owner[]> {
+        // return await this.ownersService.getAllOwners();
         if (Object.keys(param).length) {
-            return this.ownersService.ownerSearch(param);
+            return this.ownersService.ownerSearch(param)
         } else {
-            return this.ownersService.getAllOwners();
+            return this.ownersService.getAllOwners()
         }
     }
 
     @Post()
     //note -> video 03 -> 10:35
     @UsePipes(ValidationPipe)
-    createOwner(@Body() ownerCreateDto: OwnerCreateDto) {
+    createOwner(@Body() ownerCreateDto: OwnerCreateDto): Promise<Owner> {
         return this.ownersService.createOwner(ownerCreateDto)
     }
 
     @Get("/:id")
-    getOwnerById(@Param("id") id: string) {
+    getOwnerById(@Param("id") id: string): Promise<Owner> {
         return this.ownersService.getOwnerById(id);
     }
 
     @Put("/:id/mobile")
-    updateOwner(@Param("id") id: string, @Body() ownerUpdateDto: OwnerUpdateDto) {
+    updateOwner(@Param("id") id: string, @Body() ownerUpdateDto: OwnerUpdateDto): Promise<Owner> {
         ownerUpdateDto.id = id;
         return this.ownersService.updateOwner(ownerUpdateDto);
     }
@@ -42,8 +44,9 @@ export class OwnersController {
     @Delete("/:id")
     //note -> video 02 -> 38:00
     @HttpCode(204)
-    deleteOwner(@Param("id") id: string) {
-        if (!this.ownersService.deleteOwner(id)) {
+    async deleteOwner(@Param("id") id: string) {
+        let deleteO = await this.ownersService.deleteOwner(id);
+        if (!deleteO) {
             throw new NotFoundException('Owner Does Not Exist');
         }
     }

@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Pet } from 'src/schemas/Pet.schema';
 import { PetBreedValidationPipe } from './pet-breed-validation.pipe';
-import { PetBreed, PetType } from './pet.model';
 import { PetCreateDto } from './PetCreate.dto';
 import { PetsService } from './pets.service';
+import { PetSearchDto } from './petSearch.dto';
 import { PetUpdateDto } from './PetUpdate.dto';
 
 @Controller('pets')
@@ -14,8 +15,13 @@ export class PetsController {
 
     @Get()
     @UsePipes(ValidationPipe)
-    getAllPets() {
-        return this.petsService.getAllPets();
+    async getAllPets(@Query() param: PetSearchDto): Promise<Pet[]> {
+        if (Object.keys(param).length) {
+            return this.petsService.petSearch(param);
+        } else {
+            return this.petsService.getAllPets();
+        }
+        //return await this.petsService.getAllPets();
     }
 
     @Post()
@@ -23,17 +29,17 @@ export class PetsController {
     @UsePipes(ValidationPipe)
     //watch again -> video 03 -> 13:20
     @UsePipes(new PetBreedValidationPipe())
-    createPet(@Body() petCreateDto: PetCreateDto) {
+    createPet(@Body() petCreateDto: PetCreateDto): Promise<Pet> {
         return this.petsService.createPets(petCreateDto)
     }
 
     @Get("/:id")
-    getPetById(@Param("id") id: string) {
+    getPetById(@Param("id") id: string): Promise<Pet> {
         return this.petsService.getPetById(id);
     }
 
     @Put("/:id/name")
-    updatePet(@Param("id") id: string, @Body() petUpdateDto: PetUpdateDto) {
+    updatePet(@Param("id") id: string, @Body() petUpdateDto: PetUpdateDto): Promise<Pet> {
         petUpdateDto.id = id;
         return this.petsService.updatePet(petUpdateDto);
     }
@@ -41,8 +47,9 @@ export class PetsController {
     @Delete("/:id")
     //note -> video 02 -> 38:00
     @HttpCode(204)
-    deletePet(@Param("id") id: string) {
-        if (!this.petsService.deletePet(id)) {
+    async deletePet(@Param("id") id: string) {
+        let deleteO = await this.petsService.deletePet(id);
+        if (!deleteO) {
             throw new NotFoundException('Pet Does Not Exist');
         }
     }

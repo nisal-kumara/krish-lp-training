@@ -1,68 +1,45 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Owner } from './owner.model';
 import { v1 as uuid } from 'uuid'
 import { OwnerSearchDto } from './OwnerSearch.dto';
 import { OwnerUpdateDto } from './OwnerUpdate.dto';
 import { OwnerCreateDto } from './OwnerCreate.dto';
+import { Owner } from 'src/schemas/Owner.schema';
+import { OwnerRepository } from './Owner.repository';
 
 @Injectable()
 export class OwnersService {
 
-    private owners: Owner[] = [];
+    constructor(private ownerRepository: OwnerRepository) { }
 
-    getAllOwners() {
-        return this.owners;
+    async getAllOwners(): Promise<Owner[]> {
+        return await this.ownerRepository.findAll();
     }
 
-    createOwner(ownerCreateDto: OwnerCreateDto) {
-        const { firstName, lastName, email, mobile, refrenceNo } = ownerCreateDto
-
-        const owner = {
-            id: uuid(),
-            firstName,
-            lastName,
-            email,
-            mobile,
-            refrenceNo
-        }
-        this.owners.push(owner);
-        return owner;
+    async createOwner(ownerCreateDto: OwnerCreateDto): Promise<Owner> {
+        //note -> video 04 -> 24:00
+        return await this.ownerRepository.create(ownerCreateDto);
     }
 
     ownerSearch(ownerSearchDto: OwnerSearchDto) {
-        const { name, reference } = ownerSearchDto;
-        let owners = this.getAllOwners();
-
-        if (name) {
-            owners = owners.filter(owner => owner.firstName.includes(name) || owner.lastName.includes(name))
-        }
-        if (reference) {
-            owners = owners.filter(owner => String(owner.refrenceNo).includes(String(reference)))
-        }
-        return owners;
+        return this.ownerRepository.filterOwners(ownerSearchDto);
     }
 
-    getOwnerById(id: string): Owner {
-        const owners = this.getAllOwners();
-        let owner = owners.find(owner => owner.id === id);
+    getOwnerById(id: string): Promise<Owner> {
+
+        let owner = this.ownerRepository.findById(id)
         //must watch -> video 03 -> 22:44
         if (!owner) {
-            throw new NotFoundException(`${id} is Not Exist`)
+            throw new NotFoundException(`${id} Is Not Exist`)
         }
         return owner;
     }
 
-    updateOwner(ownerUpdateDto: OwnerUpdateDto): Owner {
-        const { id, mobile } = ownerUpdateDto
-        //note -> video 02 -> 27:25
-        let owner = this.getOwnerById(id);
-        owner.mobile = mobile;
-        return owner;
+    updateOwner(ownerUpdateDto: OwnerUpdateDto): Promise<Owner> {
+        return this.ownerRepository.update(ownerUpdateDto)
     }
 
-    deleteOwner(id: string): boolean {
-        let owners = this.getAllOwners();
-        this.owners = owners.filter(owner => owner.id != id);
-        return (owners.length != this.owners.length)
+    async deleteOwner(id: string): Promise<boolean> {
+        let deleteO = await this.ownerRepository.delete(id);
+        return deleteO;
     }
 }

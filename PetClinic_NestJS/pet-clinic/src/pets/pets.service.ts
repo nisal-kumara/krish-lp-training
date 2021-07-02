@@ -1,67 +1,45 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Pet, PetBreed, PetType } from './pet.model';
 import { v1 as uuid } from 'uuid'
 import { PetSearchDto } from './petSearch.dto';
 import { PetUpdateDto } from './PetUpdate.dto';
 import { PetCreateDto } from './PetCreate.dto';
+import { Pet } from 'src/schemas/Pet.schema';
+import { PetRepository } from './Pet.repository';
 
 @Injectable()
 export class PetsService {
 
-    private pets: Pet[] = [];
+    //private pets: Pet[] = [];
+    constructor(private petRepository: PetRepository) { }
 
-    getAllPets() {
-        return this.pets;
+    async getAllPets(): Promise<Pet[]> {
+        return await this.petRepository.findAll();
     }
 
-    createPets(petCreateDto: PetCreateDto) {
-        const { petName, petType, breed, refrenceNo } = petCreateDto
-
-        const pet = {
-            id: uuid(),
-            petName,
-            petType,
-            breed,
-            refrenceNo
-        }
-        this.pets.push(pet);
-        return pet;
+    async createPets(petCreateDto: PetCreateDto): Promise<Pet> {
+        //note -> video 04 -> 24:00
+        return await this.petRepository.create(petCreateDto);
     }
 
     petSearch(petSearchDto: PetSearchDto) {
-        const { type, breed } = petSearchDto;
-        let pets = this.getAllPets();
-
-        if (type) {
-            pets = pets.filter(pet => pet.petType === type);
-        }
-        if (breed) {
-            pets = pets.filter(pet => pet.breed === breed);
-        }
-        return pets;
+        return this.petRepository.filterPets(petSearchDto);
     }
 
-    getPetById(id: string): Pet {
-        const pets = this.getAllPets();
-        let pet = pets.find(pet => pet.id === id);
+    getPetById(id: string): Promise<Pet> {
+        let pet = this.petRepository.findById(id)
         //must watch -> video 03 -> 22:44
         if (!pet) {
-            throw new NotFoundException(`${id} is Not Exist`)
+            throw new NotFoundException(`${id} Is Not Exist`)
         }
         return pet;
     }
 
-    updatePet(petUpdateDto: PetUpdateDto): Pet {
-        const { id, name } = petUpdateDto
-        //note -> video 02 -> 27:25
-        let pet = this.getPetById(id);
-        pet.petName = name;
-        return pet;
+    updatePet(petUpdateDto: PetUpdateDto): Promise<Pet> {
+        return this.petRepository.update(petUpdateDto);
     }
 
-    deletePet(id: string): boolean {
-        let pets = this.getAllPets();
-        this.pets = pets.filter(pet => pet.id != id);
-        return (pets.length != this.pets.length)
+    async deletePet(id: string): Promise<boolean> {
+        let deleteO = await this.petRepository.delete(id);
+        return deleteO;
     }
 }

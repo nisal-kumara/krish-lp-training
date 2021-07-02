@@ -1,5 +1,5 @@
 import { ArgumentMetadata, BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
-import { PetBreed } from './pet.model';
+import { PetBreed } from './pet.enum';
 
 @Injectable()
 export class PetBreedValidationPipe implements PipeTransform {
