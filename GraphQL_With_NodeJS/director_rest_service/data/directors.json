@@ -2,31 +2,31 @@
     {
         "id": 1,
         "name": "James Cameron",
-        "age": 78,
-        "movies": [
-            211,
-            544,
-            87
+        "age": 66,
+        "movieList": [
+            "Avatar",
+            "Sanctum",
+            "Alita: Battle Angel"
         ]
     },
     {
         "id": 2,
-        "name": "Nolan",
-        "age": 55,
-        "movies": [
-            211,
-            544,
-            87
+        "name": "Christopher Nolan",
+        "age": 50,
+        "movieList": [
+            "Dunkirk",
+            "Interstellar",
+            "Inception",
+            "Memento"
         ]
     },
     {
         "id": 3,
         "name": "Steven Spielberg",
-        "age": 62,
-        "movies": [
-            211,
-            544,
-            87
+        "age": 74,
+        "movieList": [
+            "Jaws",
+            "Indiana Jones and the Last Crusade"
         ]
     }
 ]

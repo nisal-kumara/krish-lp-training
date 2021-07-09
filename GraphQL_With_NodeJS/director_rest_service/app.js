@@ -12,6 +12,6 @@ app.get("/directors", (req, res) => {
 app.get("/directors/:id", (req, res) => {
     res.send(directors.filter(dir => {
         return dir.id == req.params.id
-    }))
+    })[0])
 })
 app.listen(3000, () => console.log("Server is running on 3000"))
