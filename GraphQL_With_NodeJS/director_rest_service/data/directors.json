@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "James Cameron",
+        "age": 78,
+        "movies": [
+            211,
+            544,
+            87
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Nolan",
+        "age": 55,
+        "movies": [
+            211,
+            544,
+            87
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Steven Spielberg",
+        "age": 62,
+        "movies": [
+            211,
+            544,
+            87
+        ]
+    }
+]
