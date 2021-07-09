@@ -21,6 +21,7 @@ type Movie {
     year: Int,
     director: String,
     genres: [String],
+    actors: [Actor]
 }
 type Actor {
     id: ID!,
@@ -47,8 +48,19 @@ const resolvers = {
         },
         findActorById: (parent, {id}, {dataSources}, info) =>{
             return dataSources.actorService.findActorById(id);
-        }
-    }
+        },
+    },
+     //note -> video 06 -> 06:44
+     Movie: {
+        async actors(movie, args, { dataSources }, info) {
+          let actors = await dataSources.actorService.getActors();
+          let cast = actors.filter((actor) => {
+            return actor.movieList.includes(movie.id);
+          });
+          return cast;
+        },
+      },
+
 }
 
 const gqlServer = new ApolloServer({typeDefs, resolvers, dataSources})
