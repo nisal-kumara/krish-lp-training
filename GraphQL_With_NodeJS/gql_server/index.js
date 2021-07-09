@@ -1,7 +1,7 @@
 const {ApolloServer, gql} = require('apollo-server');
 // const movieList = require('./data/movies.json');
 const movieService = require('./dataSources/file');
-const directorService = require('./dataSources/director-service');
+const actorService = require('./dataSources/actors-service');
 
 //types in GraphQL -> https://graphql.org/learn/schema/
 //filter by evrything -> video 04 -> 15:20
@@ -9,29 +9,29 @@ const typeDefs = gql`type Query {
     movies(id: ID,
         title: String,
         year: Int,
-        cast: [String],
+        director: String,
         genres: [String]): [Movie],
     findMovieById(id: ID): Movie
-    directors: [Director]
-    findDirectorById(id: ID): Director
+    actors: [Actor]
+    findActorById(id: ID): Actor
 }
 type Movie {
     id: ID!,
     title: String,
     year: Int,
-    cast: [String],
-    genres: [String]
+    director: String,
+    genres: [String],
 }
-type Director {
+type Actor {
     id: ID!,
     name: String,
     age: Int,
-    movieList: [String]
+    movieList: [Int]
 }`
 
 const dataSources = ()=>({
     movieService: new movieService(),
-    directorService: new directorService()
+    actorService: new actorService()
 });
 
 const resolvers = {
@@ -42,11 +42,11 @@ const resolvers = {
         findMovieById: (parent, {id}, {dataSources}, info) =>{
             return dataSources.movieService.getMovieById(id)[0];
         },
-        directors: (parent, args, {dataSources}, info) => {
-            return dataSources.directorService.getDirectors(args);
+        actors: (parent, args, {dataSources}, info) => {
+            return dataSources.actorService.getActors(args);
         },
-        findDirectorById: (parent, {id}, {dataSources}, info) =>{
-            return dataSources.directorService.findDirectorById(id);
+        findActorById: (parent, {id}, {dataSources}, info) =>{
+            return dataSources.actorService.findActorById(id);
         }
     }
 }

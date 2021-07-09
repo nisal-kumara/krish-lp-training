@@ -1,24 +1,24 @@
 //getting data from a rest service -> video 05
 const { RESTDataSource } = require('apollo-datasource-rest');
 
-class DirectorService extends RESTDataSource{
+class ActorService extends RESTDataSource{
     
     constructor() {
         super();
         this.baseURL = 'http://localhost:3000';
       }
 
-      getDirectors(){
-        return this.get('/directors')
-        .then((directors) => {
-          return directors;
+      getActors(){
+        return this.get('/actors')
+        .then((actors) => {
+          return actors;
         })
         .catch((error) => console.log(error));
     }
   
-    async findDirectorById(id) {
-      return await this.get(`/directors/${id}`);
+    async findActorById(id) {
+      return await this.get(`/actors/${id}`);
     }
 }
 
-module.exports = DirectorService;
+module.exports = ActorService;
