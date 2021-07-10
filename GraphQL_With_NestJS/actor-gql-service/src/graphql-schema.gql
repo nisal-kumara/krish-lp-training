@@ -1,0 +1,48 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Actor {
+  id: String!
+  firstName: String!
+  lastName: String
+  country: String!
+  favMovie: String!
+}
+
+type Movie {
+  id: String!
+  title: String!
+  code: Int!
+}
+
+type Query {
+  getAllActors: [Actor!]!
+  getAllMovies: [Movie!]!
+  movie(id: String!): Movie!
+}
+
+type Mutation {
+  createActor(actorInput: ActorCreateDTO!): Actor!
+  createMovie(movie: CreateMovieInput!): Movie!
+  updateMovie(movie: UpdateMovieInput!): Movie!
+  removeMovie(id: Int!): Movie!
+}
+
+input ActorCreateDTO {
+  firstName: String!
+  lastName: String
+  country: String!
+  favMovie: String!
+}
+
+input CreateMovieInput {
+  title: String!
+  code: Int!
+}
+
+input UpdateMovieInput {
+  title: String!
+  code: Int!
+  id: String!
+}
