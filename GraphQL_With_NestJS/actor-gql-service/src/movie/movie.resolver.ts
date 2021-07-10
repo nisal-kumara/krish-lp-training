@@ -18,7 +18,7 @@ export class MovieResolver {
     return this.movieService.findAll();
   }
 
-  @Query(() => Movie, { name: 'movie' })
+  @Query(() => Movie, { name: 'movieById' })
   findOne(@Args('id') id: string) {
     return this.movieService.findOne(id);
   }
@@ -29,7 +29,7 @@ export class MovieResolver {
   }
 
   @Mutation(() => Movie)
-  removeMovie(@Args('id', { type: () => Int }) id: number) {
+  removeMovie(@Args('id', { type: () => Int }) id: string) {
     return this.movieService.remove(id);
   }
 }

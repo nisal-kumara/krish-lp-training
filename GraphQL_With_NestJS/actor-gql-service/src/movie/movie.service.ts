@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateMovieInput } from './dto/create-movie.input';
@@ -14,22 +14,32 @@ export class MovieService {
   create(movie: CreateMovieInput): Promise<Movie> {
     let mov = this.movieRepository.create(movie);
     return this.movieRepository.save(mov); //***note -> 48:40
-
   }
 
   async findAll(): Promise<Movie[]> {
-    return this.movieRepository.find()
+    return this.movieRepository.find({
+      relations: ['actors']
+    });
   }
 
   async findOne(id: string): Promise<Movie> {
-    return this.movieRepository.findOne(id)
+    return this.movieRepository.findOne(id, {relations: ['actors']})
   }
 
   update(id: string, updateMovieInput: UpdateMovieInput) {
-    return `This action updates a #${id} movie`;
+    let movie: Movie = this.movieRepository.create(updateMovieInput)
+    movie.id = id;
+    return this.movieRepository.save(movie) 
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} movie`;
+  async remove(id: string) {
+     let mov = this.findOne(id)
+    if (mov) {
+      let ret = await this.movieRepository.delete(id)
+      if (ret.affected === 1) {
+        return mov;
+      }
+    }
+    throw new NotFoundException(`Record cannot find by id ${id}`)
   }
 }

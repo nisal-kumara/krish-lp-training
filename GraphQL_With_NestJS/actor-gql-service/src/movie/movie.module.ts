@@ -6,6 +6,7 @@ import { Movie } from './entities/movie.entity';
 
 @Module({
   imports:[TypeOrmModule.forFeature([Movie])],
-  providers: [MovieResolver, MovieService]
+  providers: [MovieResolver, MovieService],
+  exports: [MovieService] //**note -> 01:08:00
 })
 export class MovieModule {}

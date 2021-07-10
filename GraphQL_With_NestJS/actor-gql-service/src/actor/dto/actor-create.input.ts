@@ -12,4 +12,7 @@ export class ActorCreateDTO{
     country: string
     @Field()
     favMovie: string
+
+    @Field()
+    movieId: string
 }

@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Actor } from 'src/actor/entities/actor.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -14,4 +15,9 @@ export class Movie {
   @Field(() => Int) //note -> 46:05
   @Column()
   code: number
+
+  //**must watch-> 54:10
+  @OneToMany(() => Actor, actor => actor.movie)
+  @Field(()=> [Actor], {nullable: true})
+  actors: Actor[]
 }

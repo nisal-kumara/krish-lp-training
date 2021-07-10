@@ -8,18 +8,22 @@ type Actor {
   lastName: String
   country: String!
   favMovie: String!
+  movie: Movie!
+  movieId: String!
 }
 
 type Movie {
   id: String!
   title: String!
   code: Int!
+  actors: [Actor!]
 }
 
 type Query {
   getAllActors: [Actor!]!
+  actorById(id: String!): Actor!
   getAllMovies: [Movie!]!
-  movie(id: String!): Movie!
+  movieById(id: String!): Movie!
 }
 
 type Mutation {
@@ -34,6 +38,7 @@ input ActorCreateDTO {
   lastName: String
   country: String!
   favMovie: String!
+  movieId: String!
 }
 
 input CreateMovieInput {
