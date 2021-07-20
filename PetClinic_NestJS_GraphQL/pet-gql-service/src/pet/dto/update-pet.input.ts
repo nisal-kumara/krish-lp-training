@@ -13,4 +13,6 @@ export class UpdatePetInput extends PartialType(CreatePetInput) {
     petType: PetType
     @Field()
     breed: PetBreed
+    @Field()
+    ownerId: string
 }

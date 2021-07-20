@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLFederationModule, GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { AppController } from './app.controller';
@@ -7,7 +7,8 @@ import { AppService } from './app.service';
 import { OwnerModule } from './owner/owner.module';
 
 @Module({
-  imports: [OwnerModule, GraphQLModule.forRoot({
+  //GraphQLFederationModule used to generate schema, that apollo federation can understand
+  imports: [OwnerModule, GraphQLFederationModule.forRoot({
     autoSchemaFile: join(process.cwd(), 'src/graphql-schema.gql'),
   }),
   TypeOrmModule.forRoot({

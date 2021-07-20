@@ -10,4 +10,6 @@ export class CreatePetInput {
   petType: PetType
   @Field()
   breed: PetBreed
+  @Field()
+  ownerId: string
 }

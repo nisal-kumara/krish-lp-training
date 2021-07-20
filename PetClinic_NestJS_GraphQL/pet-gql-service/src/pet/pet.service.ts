@@ -39,4 +39,9 @@ export class PetService {
     }
     throw new NotFoundException(`Record cannot find by id ${id}`)
   }
+
+  //for federation gateway
+  async forOwner(id: string){
+    return await this.petRepository.find({"ownerId": id})
+  }
 }

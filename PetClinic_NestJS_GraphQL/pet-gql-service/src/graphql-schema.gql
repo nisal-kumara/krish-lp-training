@@ -2,11 +2,28 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+directive @key(fields: String!) on OBJECT | INTERFACE
+
+directive @extends on OBJECT | INTERFACE
+
+directive @external on OBJECT | FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+type Owner {
+  id: ID!
+  pets: [Pet!]!
+}
+
 type Pet {
-  id: String!
+  id: ID!
   petName: String!
   petType: String!
   breed: String!
+  owner: Owner!
+  ownerId: String!
 }
 
 type Query {
@@ -24,11 +41,13 @@ input CreatePetInput {
   petName: String!
   petType: String!
   breed: String!
+  ownerId: String!
 }
 
 input UpdatePetInput {
   petName: String!
   petType: String!
   breed: String!
+  ownerId: String!
   id: String!
 }
